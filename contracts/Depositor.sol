@@ -571,8 +571,7 @@ contract AutoInvest is Ownable {
 
     IterableMapping.Map private investors;
 
-    // Prod - 0xBFF4D797cc022e785dC0599720097Cbdbcbc6740
-    IXSPStaking public mainContract = IXSPStaking(0x0FDF853774aB1561722E9fF7f6814C4b41bC8A31);
+    IXSPStaking public mainContract = IXSPStaking(0xBFF4D797cc022e785dC0599720097Cbdbcbc6740);
 
 
     mapping(address => uint256) public stakers;
@@ -584,8 +583,7 @@ contract AutoInvest is Ownable {
     bool public depositsEnabled = true;
     bool public withdrawalsEnabled = false;
 
-    // Prod - 0x36726235dAdbdb4658D33E62a249dCA7c4B2bC68
-    IERC20 public token =  IERC20(0x2Dd9FfF70fDa675291aac6dBef4A27bF1B4735bB);
+    IERC20 public token =  IERC20(0x36726235dAdbdb4658D33E62a249dCA7c4B2bC68);
 
     address public managerAddress;
     uint256 public withdrawFeePercent = 50;
