@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.10;
 
 interface IERC20 {
     /**
@@ -627,6 +627,10 @@ contract AutoInvest is Ownable {
         // stakers[msg.sender] += _amount;
     }
 
+    function changeMinimumAmount(uint256 _newAmount) external onlyOwner {
+        minAmountToStake = _newAmount;
+    }
+
     function isRunning() public view returns(bool) {
         return totalStaked >= minAmountToStake;
     }
@@ -634,6 +638,7 @@ contract AutoInvest is Ownable {
     function withdraw() external {
         require(withdrawalsEnabled);
         require(investors.get(msg.sender) > 0, "Nothing to unstake");
+        require(totalStaked - investors.get(msg.sender) >= minAmountToStake);
         // require(stakers[msg.sender] > 0, "Nothing to unstake");
         harvest();
         uint256 amount = investors.get(msg.sender);
